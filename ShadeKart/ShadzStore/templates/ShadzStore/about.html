@@ -1,0 +1,22 @@
+{% extends 'ShadzStore/basic.html' %}
+
+{% block title %} ShadzStore - About Us {% endblock %}
+{% block css %}
+    {% load static %}
+    body{
+        background-image: url({% static 'ShadzStore/Store1.jpg' %});
+        background-size: cover;
+    }
+{% endblock %}
+
+{% block body %}
+    <h2> About ShadzStore </h2>
+    <h5>
+        We are always ready to serve our customers at all times!!
+        <br>
+        We provide all sorts of products ranging from fashion to electronics and other products as well!
+        <br>
+        We are currently including more services with time, so enjoy our services till we upgrade ourselves!!
+    </h5>
+
+{% endblock %}

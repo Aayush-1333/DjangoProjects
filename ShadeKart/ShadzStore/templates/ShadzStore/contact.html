@@ -1,0 +1,48 @@
+{% extends 'ShadzStore/basic.html' %}
+{% block title %} ShadzStore - Help and Support {% endblock %}
+{% block css %}
+{% load static %}
+body{
+background-image: url({% static 'ShadzStore/Store1.jpg'%})
+}
+{% endblock %}
+{% block body %}
+<!-- ======= Help and Support Form ======== -->
+<form action="/shop/contact/" id='complaint' method="post">{% csrf_token %}
+    <div class="my-4 mx-4">
+        <h2> Contact Us: </h2>
+        <label for="name" class="form-label"> Full Name </label>
+        <input class="form-control" type="text" id="name" name="name" placeholder="Your Name" style="width: 350px;">
+        <br>
+        <label for="email" class="form-label"> Email Address </label>
+        <input class="form-control" type="email" id="email" name="email" placeholder="example@gmail.com" style="width: 350px;">
+        <br>
+        <label for="phone" class="form-label"> Phone Number </label>
+        <input class="form-control" type="tel" id="phone" name="phone" placeholder="Your number" style="width: 350px;">
+        <br>
+        <label for="desc" class="form-label"> Complaint Description </label>
+        <textarea class="form-control" placeholder="Describe your problem here" id="desc" name="desc" style="width: 550px; height: 150px;"></textarea>
+        <button class="btn btn-success my-4" onclick=SubmitForm()> Submit </button>
+        <a href="/shop"> <button class="btn btn-primary my-4 mx-2" type="button"> Go back </button> </a>
+    </div>
+</form>
+{% endblock %}
+
+{% block js %}
+<script>
+    function SubmitForm(){
+        var name = document.getElementById('name');
+        var email = document.getElementById('email');
+        var phone = document.getElementById('phone');
+        var complaint = document.getElementById('desc');
+
+        if (name.value != '' && email.value != '' && phone.value != '' && complaint.value != ''){
+            document.getElementById('complaint').submit();
+        }
+
+        else{
+            alert("Please fill the details");
+        }
+    }
+</script>
+{% endblock %}

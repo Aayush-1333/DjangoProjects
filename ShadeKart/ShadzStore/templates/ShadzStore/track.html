@@ -1,0 +1,75 @@
+{% extends 'ShadzStore/basic.html' %}
+{% block title %} ShadzStore - Track your orders {% endblock %}
+{% block body %}
+<div class="container-fluid my-4 mx-4">
+    <div class="row">
+        <div class="col-4">
+            <h3> Enter your order id and email to track your orders </h3>
+            <form action="" class="my-4" method="post" id="trackerForm">
+                {% csrf_token %}
+                <label for="orderId" class="form-label"> <b> Order ID </b> </label>
+                <input type="text" class="form-control" placeholder="Your order ID" id="orderId" name="orderId" style="width: 200px;">
+                <label for="emailAddr" class="form-label my-2"> <b> Email Address </b> </label>
+                <input type="email" class="form-control" placeholder="Your email" id="emailAddr" name="emailAddr" style="width: 420px;">
+                <button type="submit" class="btn btn-primary my-4"> Track Order </button>
+            </form>
+        </div>
+        <div class="col-6 mx-4">
+            <h2> Order Status </h2>
+            <div class="row">
+                <div class="container-fluid" style="background-color: white; height:300px;">
+                    <ol id='orderStatus'>
+                        <ul class="my-4"> <b> Check order status here </b> </ul>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+$('#trackerForm').submit(function(event) {
+    $('#orderStatus').empty();
+    var formData = {
+        'orderID': $("input[name='orderId']").val(),
+        'email': $("input[name='emailAddr']").val(),
+        'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()
+    };
+
+    $.ajax({
+            type: 'post',
+            url: '/shop/trackProduct/',
+            data: formData
+        })
+
+
+        .done(function(data) {
+
+            updates = JSON.parse(data);
+
+            if (updates.length > 0 && updates != {}) {
+                var myStr = "";
+                for (i = 0; i < updates.length; i++) {
+                    let text = updates[i]['text'];
+                    let time = updates[i]['time'];
+
+                    myStr = "<li class='list-group-item d-flex justify-content-between align-items-center'>" + text + "<span class='badge badge-primary badge-pill'>" + time + "</span> \
+                                </li>";
+
+                    document.getElementById('orderStatus').innerHTML += myStr;
+                }
+            } else {
+                myStr = "<li class='list-group-item d-flex justify-content-between align-items-center'> \
+                                Sorry order not found! \
+                            </li>";
+
+                document.getElementById('orderStatus').innerHTML += myStr;
+
+            }
+        });
+
+    event.preventDefault();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'ShadzBlogs/basic.html' %}
+{% block title %}ShadzBlogs - Search Results{% endblock %}
+{% block body %}
+<div class="container-fluid" style="padding-left: 90px;">
+    <div class="row mx-4 mt-4">
+        {% if num_posts == 0 %}
+        <h2>Search Results - Sorry! posts not found!</h2>
+        {% else %}
+        {% for post in posts %}
+        <div class="col-auto rounded mx-4 card" style="border: solid;">
+            <img src="/media/{{post.thumbnail}}" class="my-4" width="330" height="200" align="left">
+            <h5 class="card-title border-bottom"> {{post.title}} </h5>
+            <p class="blog-post-meta">by {{post.writer}} {{post.published_date}}</p>
+            <h6 class="card-text text-success"><i>{{post.head0}}</i></h6>
+            <h6 class="card-text"> {{post.content_head0|slice:":30"}}... </h6>
+            <p> <a href="/blogs/postView{{post.post_id}}" class="fw-bold"> Continue reading </a></p>
+        </div>
+        {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+    </div>
+    <div class="row mx-4 my-4">
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

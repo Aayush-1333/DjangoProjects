@@ -1,0 +1,142 @@
+{% extends 'ShadzStore/basic.html'%}
+{% block title %} ShadzStore - Checkout {% endblock %}
+{% block body %}
+<div class="row">
+    <!-- ========== Details Form =========== -->
+    <div class="col mx-4 my-4">
+        <form id='detailForm' method='post'> {% csrf_token %}
+            <h2> Fill the details </h2>
+            <br>
+            <input type="hidden" name='amount' id="amount">
+            <label for='name' class="form-label"> <b> Full Name </b> </label>
+            <input type="text" id="name" name="name" placeholder="Your name" class="form-control" required style="width: 650px;">
+            <br>
+            <label for='address1' class="form-label"> <b> Address Line 1 </b> </label>
+            <input type="text" id="address1" name="address1" placeholder="Your address" class="form-control" required style="width: 650px;">
+            <br>
+            <label for='address2' class="form-label"> <b> Address Line 2 </b> </label>
+            <input type="text" id="address2" name="address2" placeholder="Your address" class="form-control" style="width: 650px;">
+            <br>
+            <label for='address3' class="form-label"> <b> Address Line 3 </b> </label>
+            <input type="text" id="address3" name="address3" placeholder="Your address" class="form-control" style="width: 650px;">
+            <br>
+            <div class="row">
+                <div class="col-2 mx-4">
+                    <label for="state" class="form-label"> <b> State </b> </label>
+                    <input type="text" id="state" name="state" class="form-control" placeholder="Enter State" required style="width: 150px;">
+                </div>
+                <div class="col-2 mx-4">
+                    <label for="city" class="form-label"> <b> City </b> </label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Enter City" required style="width: 150px;">
+                </div>
+                <div class="col-2 mx-4">
+                    <label for="zip" class="form-label"> <b> Zip Code </b> </label>
+                    <input type="text" id="zip" name="zip" class="form-control" placeholder="Enter zipcode" required style="width: 150px;">
+                </div>
+            </div>
+            <br>
+            <label for='phone' class="form-label"> <b> Contact Number </b> </label>
+            <input type="tel" id="phone" name="phone" placeholder="Your mobile number" class="form-control" required style="width: 650px;">
+            <br>
+            <label for='email' class="form-label"> <b> Email Address </b> </label>
+            <input type="email" id="email" name="email" placeholder="Your email address" class="form-control" required style="width: 650px;">
+        </form>
+    </div>
+    <!-- ========= Displaying items from the cart ========== -->
+    <div class="col mx-4 my-4" id="displayItems" style="background-color: white; border-style: solid;">
+        <h2> No orders </h2>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<!-- ========= Display bill of the items ========= -->
+<script>
+cart = JSON.parse(localStorage.getItem('cart'));
+itemsDisplay = "<h3 class='my-4'> Your items </h3>\
+                    <hr class='solid' style='border-top: double;color: cornflowerblue;'> \
+                    <div class='row mx-2'> \
+                    <div class='col'> Item Name </div>\
+                    <div class='col'> Quantity </div>\
+                    <div class='col'> Price </div> </div><br>";
+var i = 1;
+var totalBill = 0;
+for (var item in cart) {
+    totalBill += parseFloat(cart[item][2].slice(3, )) * parseFloat(cart[item][0]);
+    itemsDisplay += "<div class='row mx-2'> \
+                     <div class='col'> <b>" + cart[item][1] + "</b></div>\
+                     <div class='col'>" + cart[item][0] + "</div>\
+                     <div class='col'>" + 'INR ' + String(parseFloat(cart[item][2].slice(4, )) * parseFloat(cart[item][0])) + "</div> </div><br>";
+    i += 1;
+}
+
+itemsDisplay += "<div class='row mx-2'> \
+                 <div class='col'> </div>\
+                 <div class='col'>" + "Delivery Charges" + "</div>\
+                 <div class='col'>" + 'INR ' + String((0.15 * totalBill).toFixed(2)) + "</div> </div><br>";
+
+itemsDisplay += "<div class='row mx-2'> \
+                 <div class='col'> </div>\
+                 <div class='col'>" + "GST" + "</div>\
+                 <div class='col'>" + 'INR ' + String((0.18 * totalBill).toFixed(2)) + "</div> </div><br>";
+
+itemsDisplay += "<hr class='solid' style='border-top: double;color: cornflowerblue;'> \
+                 <h5 class='mx-4' style='text-align: -webkit-right;'> Total Bill = INR " + String((totalBill + 0.15 * totalBill + 0.18 * totalBill).toFixed(2)) + "</h5><br>\
+                 <p> After placing the order it will dispatch from the retail store immediately. Your order will take 5-6 days depending on the conditions </p>\
+                    <button type='button' class='btn btn-warning my-4 mx-4' onclick=SubmitDetails()> Make Payment </button> \
+                    <a href='/shop/'> <button class='btn btn-warning my-4 mx-4'> Go Back </button> </a>";
+document.getElementById('displayItems').innerHTML = itemsDisplay;
+
+
+// changing the value in hidden input amount field
+var amountField = document.getElementById('amount');
+amountField.value = Number((totalBill + 0.15 * totalBill + 0.18 * totalBill).toFixed(2));
+
+// ============ Checking whether the user has entered the details or not ===========
+// var name = document.getElementById('name');
+// var email = document.getElementById('email');
+// var phone = document.getElementById('phone');
+// var address = document.getElementById('address1');
+// var city = document.getElementById('city');
+// var zip = document.getElementById('zip');
+
+function SubmitDetails() {
+    document.getElementById('detailForm').submit();
+}
+
+$('#detailForm').submit(function(event) {
+    var formData = {
+        'name': $["input[name='name']"].val(),
+        'email': $["input[name='email']"].val(),
+        'phone': $["input[name='phone']"].val(),
+        'address1': $["input[name='address1']"].val(),
+        'address2': $["input[name='address2']"].val(),
+        'address3': $["input[name='address3']"].val(),
+        'state': $["input[name='state']"].val(),
+        'city': $["input[name='city']"].val(),
+        'zip': $["input[name='zip']"].val(),
+        'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val()
+    };
+
+
+    $.ajax({
+            type: 'post',
+            url: '/shop/checkout',
+            data: formData
+        })
+
+        .done(function(data) {
+            details = JSON.parse(data);
+
+            if (details.name != '' && details.email != '' && details.phone != '' && details.address != '' && details.city != '' && details.zip != '') {
+                window.alert('Thank you for placing your order! Your order id is {{orderIDNumber}}');
+                localStorage.clear();
+                cart = {};
+            } else {
+                alert('Please fill the details');
+            }
+        })
+
+    event.preventDefault();
+})
+</script>
+{% endblock %}

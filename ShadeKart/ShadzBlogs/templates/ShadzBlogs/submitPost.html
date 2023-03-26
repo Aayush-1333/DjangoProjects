@@ -1,0 +1,45 @@
+{% extends 'ShadzBlogs/basic.html' %}
+{% block title %}ShadzBlogs - Submit your post{% endblock %}
+{% block body %}
+<div class="container mt-4 rounded" style="background-color: wheat;">
+    <h2 class="mx-4">Submit your post</h2>
+    <div class="row mx-4">
+        <form method="post">
+            {% csrf_token %}
+            <label for="name" class="form-label"><strong>Name of writer</strong></label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Your Name" style="width: 500px;">
+            <br>
+            <label for="email" class="form-label"><strong>Email Address</strong></label>
+            <input class="form-control" type="email" id="email" name="email" placeholder="Your Email" style="width: 500px;">
+            <br>
+            <label for="blogTitle" class="form-label"><strong>Blog Title</strong></label>
+            <input class="form-control" type="text" id="blogTitle" name="blogTitle" placeholder="Blog Title" style="width: 500px;">
+            <br>
+            <label for="title1" class="form-label"><strong>Post Title - Heading 1</strong></label>
+            <input class="form-control" type="text" id="title1" name="title1" placeholder="Title of the post" style="width: 500px;">
+            <br>
+            <label for="titleContent1" class="form-label"><strong>Post Content (Heading 1)</strong></label>
+            <textarea class="form-control" type="text" id="titleContent1" name="titleContent1" placeholder="Write here" style="width: 600px; height: 200px;"></textarea>
+            <br>
+            <label for="title2" class="form-label"><strong>Post Title - Heading 2</strong></label>
+            <input class="form-control" type="text" id="title2" name="title2" placeholder="Title of the post" style="width: 500px;">
+            <br>
+            <label for="titleContent2" class="form-label"><strong>Post Content (Heading 2)</strong></label>
+            <textarea class="form-control" type="text" id="titleContent2" name="titleContent2" placeholder="Write here" style="width: 600px; height: 200px;"></textarea>
+            <br>
+            <label for="title3" class="form-label"><strong>Post Title - Heading 3</strong></label>
+            <input class="form-control" type="text" id="title" name="title3" placeholder="Title of the post" style="width: 500px;">
+            <br>
+            <label for="titleContent3" class="form-label"><strong>Post Content (Heading 3)</strong></label>
+            <textarea class="form-control" type="text" id="titleContent3" name="titleContent3" placeholder="Write here" style="width: 600px; height: 200px;"></textarea>
+            <br>
+            <label for="thumbnail" class="form-label"><strong>Post Thumbnail</strong></label>
+            <br>
+            <input class="mb-4" type="file" accept="image/*" id="thumbnail" name="image" placeholder="Upload Image" style="width: 500px;">
+            <br>
+            <button type="submit" class="btn btn-success mb-4">Submit Post</button>
+            <button type="button" class="btn btn-secondary mb-4 mx-4">Go back</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

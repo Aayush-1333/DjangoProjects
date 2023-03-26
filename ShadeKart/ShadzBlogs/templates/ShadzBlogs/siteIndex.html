@@ -1,0 +1,149 @@
+{% extends 'ShadzBlogs/basic.html'%}
+{% block title %} ShadzBlogs - Home {% endblock %}
+{% block content %} ShadzBlogs {% endblock %}
+{% block body %}
+{% load static %}
+<main class="container">
+    <div class="p-4 p-md-5 mb-4 rounded text-bg-dark" style="background-color: black;">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="display-3 fst-italic text-white"><strong><i>Welcome to our blog page</i></strong></h1>
+                <p class="lead my-3 text-white"> Get up to date with the latest thrilling posts from our users across the globe.</p>
+                <p class="lead mb-0"><a href="/blogs/about" class="fw-bold text-blue">Continue reading...</a></p>
+            </div>
+            <div class="col" align="right">
+                <img src="{% static 'ShadzBlogs/blog.jpg'%}" width="420" height="320">
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: white;">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">World</strong>
+                    <h3 class="mb-0">Shop Inauguration</h3>
+                    <div class="mb-1 text-muted">Jun 12</div>
+                    <p class="card-text mb-auto">We are pleased to announce the opening of new branch outlets in San Diego.</p>
+                    <a href="/blogs/officialPost1" class="stretched-link mt-3">Continue reading</a>
+                </div>
+                <div class="col d-none d-lg-block" align="right">
+                    <img src="{% static 'ShadzBlogs/ShopImage.jpg'%}" width="200" height="250">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 mx-2 shadow-sm h-md-250 position-relative" style="background-color: white;">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success">Updates</strong>
+                    <h3 class="mb-0">New Products</h3>
+                    <div class="mb-1 text-muted">Nov 11</div>
+                    <p class="card-text mb-auto">Know about the products that are launching this year!</p>
+                    <a href="/blogs/officialPost2" class="stretched-link mt-3">Continue reading</a>
+                </div>
+                <div class="col d-none d-lg-block" align="right">
+                    <img src="{% static 'ShadzBlogs/productLaunch.jpg'%}" width="200" height="250">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-5">
+        <div class="col-md-8 rounded mt-2 mb-2" style="background-color: white;">
+            <h3 class="pb-4 mb-4 border-bottom mt-3">
+                <i>From the ShadeCompany</i>
+            </h3>
+            <article class="blog-post">
+                <h2 class="blog-post-title mb-1">Greetings</h2>
+                <p class="blog-post-meta">January 13, 2023 by <a href="#">Aayush (CEO)</a></p>
+                <p> I'm glad to announce the new Tech expo that is going to be held on 7th of November 2023, near Sector 78 Noida, Delhi NCR.</p>
+                <hr>
+                <p> We'll be showcasing lots of stuff there including new designs, techs, art forms and other cool stuff. Make sure to get your tickets booked for this expo. We'll meet you there!!</p>
+                <h2>Details of the event</h2>
+                <blockquote class="blockquote">
+                    <p>"The woods are lovely dark and deep, and miles to go before I sleep and miles to go before I sleep". - <i>Robert Frost</i></p>
+                </blockquote>
+                <p>We are listing down some of the important activities that are going to be held during this event:</p>
+                <h3>Our chief guests</h3>
+                <p>This is some additional paragraph placeholder content. It's a slightly shorter version of the other highly repetitive body text used throughout. This is an example unordered list:</p>
+                <ul>
+                    <li><strong>Dr. Rajat Mishra (Prof. at IIT Delhi)</strong></li>
+                    <li><strong>Cap. Rohan Srivastava (Retired Army officer)</strong></li>
+                    <li><strong>Mrs. Sumanti Chaturvedi (CEO of Birlasoft Comapany)</strong></li>
+                </ul>
+                <p>Events to take place:</p>
+                <ol>
+                    <li><strong>Tech Expo 2023</strong></li>
+                    <li><strong>Cultural Fest 2023</strong></li>
+                    <li><strong>Craftsmania Villa Fest 2023</strong></li>
+                </ol>
+                <p>Our contribtuing partners:</p>
+                <dl>
+                    <dt>Paytm Company (Paytm)</dt>
+                    <dd>Sponsoring the payment applications for faster and safer fund transfers</dd>
+                    <dt>Tata Consultancy Services (TCS)</dt>
+                    <dd>For providing tech consultations to our public</dd>
+                    <dt>Infosys</dt>
+                    <dd>A service based company for its rich experience and best expertise</dd>
+                </dl>
+                <h2>About the venue</h2>
+                <p>The event has been organized at Sercof Building near Sector 78, Noida, Uttar Pradesh.<a href='https://www.magicbricks.com/Sector-78-in-Noida-Overview'> Know more</a></p>
+                <ul>
+                    <li>Secure organization with CCTV cameras 24x7</li>
+                    <li>Best food including breakfast, lunch and dinner available.</li>
+                    <li>24x7 Water Sources available, along with fresh mineral water for drinking.</li>
+                    <li>Full air-conditioned offices for business meetings.</li>
+                    <li>3 BHK apratments near the building at Hotel Resto.</li>
+                </ul>
+                <p>You can contact us to know more about the facilities around there.</p>
+            </article>
+            <article class="blog-post">
+                <h2 class="blog-post-title mb-1">New feature - AutoText detection</h2>
+                <p class="blog-post-meta">February 10, 2023 by <a href="#">Rakesh</a></p>
+                <p>Greetings fellows!! I'm glad to announce the deployment of AutoText detector Textlyzer to improve the exeprience of our valuable customers. It will give you suggestions based on the type of content you're writing to get best results! I'm telling the most important aspects that this tool is going to cover:</p>
+                <ul>
+                    <li>Auto-spelling correction</li>
+                    <li>Text relevance analysis</li>
+                    <li>Punctuation marks detector</li>
+                </ul>
+                <p>To know more about this amazing Textlyzer tool <a href="#"> click here!</a></p>
+            </article>
+            <nav class="blog-pagination my-4" aria-label="Pagination">
+                <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+                <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
+            </nav>
+        </div>
+        <div class="col-md-4">
+            <div class="position-sticky my-2" style="top: 2rem;">
+                <div class="p-4 mb-2 bg-light rounded" style="background-color: white;">
+                    <h4 class="fst-italic">About</h4>
+                    <p class="mb-0">This company provides shopping and blog facilities to our customers. We ensure that we should provide all types of services at all times with our 24x7 customer support.</p>
+                </div>
+                <div class="p-4 rounded" style="background-color: white;">
+                    <h4 class="fst-italic">Archives</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li><a href="#">March 2021</a></li>
+                        <li><a href="#">February 2021</a></li>
+                        <li><a href="#">January 2021</a></li>
+                        <li><a href="#">December 2020</a></li>
+                        <li><a href="#">November 2020</a></li>
+                        <li><a href="#">October 2020</a></li>
+                        <li><a href="#">September 2020</a></li>
+                        <li><a href="#">August 2020</a></li>
+                        <li><a href="#">July 2020</a></li>
+                        <li><a href="#">June 2020</a></li>
+                        <li><a href="#">May 2020</a></li>
+                        <li><a href="#">April 2020</a></li>
+                    </ol>
+                </div>
+                <div class="p-4 rounded my-2" style="background-color: white;">
+                    <h4 class="fst-italic">Contact Us</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="https://github.com/">GitHub</a></li>
+                        <li><a href="https://twitter.com/?lang=en-in">Twitter</a></li>
+                        <li><a href="https://www.facebook.com/">Facebook</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

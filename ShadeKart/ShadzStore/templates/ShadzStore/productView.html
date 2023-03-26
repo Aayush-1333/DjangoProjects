@@ -1,0 +1,152 @@
+{% extends 'ShadzStore/basic.html' %}
+{% block title %} ShadzStore - Product View {% endblock %}
+{% block body %}
+<div class="container my-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="row">
+                <img src="/media/{{product.0.image}}" width=200px height=200px>
+            </div>
+            <div class="row my-2">
+                <button type="button" class="btn btn-primary" onclick="BuyNow()" id="buypr{{product.0.id}}">Buy Now</button>
+                <span class="divpr" id="divpr{{product.0.id}}">
+                    <button type="button" class="btn btn-primary mx-2 cart" id="pr{{product.0.id}}">Add to Cart</button>
+                </span>
+            </div>
+        </div>
+        <div class="col md-4" style="background-color: white;">
+            <h4 class="my-2" id="namepr{{product.0.id}}"> {{product.0.product_name}} </h4>
+            <h6 class="my-4"> Price - <b id="pricepr{{product.0.id}}">INR {{product.0.price}}</b> </h6>
+            <h6> Description: </h6>
+            <p> {{product.0.desc}} </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<!-- ======== Script for managing items in the cart ======= -->
+<script>
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    UpdateCart(cart);
+}
+
+
+// adding items to cart when clicked (Cart Creation)
+$('.divpr').on('click', 'button.cart', function() {
+    var idStr = this.id.toString();
+    console.log(idStr);
+
+    if (cart[idStr] != undefined) {
+        qty = cart[idStr][0] + 1;
+        cart[idStr][0] = cart[idStr][0] + 1;
+    } else {
+        qty = 1;
+        name = document.getElementById('name' + idStr).innerHTML;
+        price = document.getElementById('price' + idStr).innerHTML;
+        cart[idStr] = [qty, name, price];
+    }
+    UpdateCart(cart);
+    UpdatePopOver(cart);
+});
+
+
+// ========= Add popover to cart =========
+$('.popcart').popover();
+UpdatePopOver(cart);
+
+// ======== Updating popover in cart =========
+function UpdatePopOver(cart) {
+    popStr = "";
+
+    if (Object.entries(cart).length != 0)
+        popStr = "<h5> Your items </h5>";
+    else
+        popStr = "<h5> Cart is empty </h5>";
+
+    var i = 1;
+    for (var item in cart) {
+        popStr += "<b>" + i + "." + "</b>" + " ";
+        popStr = popStr + document.getElementById('name' + item).innerHTML + " Qty: " + cart[item][0] + "<br>";
+        i = i + 1;
+    }
+
+    if (Object.entries(cart).length != 0) {
+        popStr += "<br><button type='button' id='clear' class='btn btn-primary clr' onclick=ClearCart()> Clear Cart </button>";
+        popStr += "<a href='checkout/'> <button type='button' id='checkout' class='btn btn-primary'> Checkout </button> </a>";
+    }
+
+    document.getElementById('popcart').setAttribute('data-content', popStr);
+}
+
+
+// ======== Update Cart function ========
+function UpdateCart(cart) {
+    var sum = 0;
+    for (var item in cart) {
+        sum += cart[item][0];
+        document.getElementById('div' + item).innerHTML = "<button id='minus" + item + "'class='btn btn-primary minus mx-2'> - </button> \
+                                                        <span id='val" + item + "''> " + cart[item][0] + " </span> \
+                                                        <button id='plus" + item + "' class='btn btn-primary plus mx-2'> + </button>";
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = sum;
+}
+
+
+// if plus or minus button is clicked then increment/decrement that item
+$('.divpr').on("click", "button.minus", function() {
+    a = this.id.slice(7, );
+    if (cart["pr" + a][0] > 1) {
+        cart["pr" + a][0] = cart["pr" + a][0] - 1;
+        document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+    } else {
+        // delete that item from cart when qty = 0
+        document.getElementById('divpr' + a).innerHTML = "<button type='button' id='pr" + a + "'class='btn btn-primary cart mx-2'> Add to Cart </button>";
+        delete cart["pr" + a];
+    }
+    UpdateCart(cart);
+    UpdatePopOver(cart);
+});
+
+$('.divpr').on("click", "button.plus", function() {
+    a = this.id.slice(6, );
+    cart["pr" + a][0] = cart["pr" + a][0] + 1;
+    document.getElementById('valpr' + a).innerHTML = cart['pr' + a][0];
+    UpdateCart(cart);
+    UpdatePopOver(cart);
+});
+
+
+// ======== Clearing the cart ========
+function ClearCart(cart) {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = "<button id=" + item + " class='btn btn-primary cart'> Add to cart </button>";
+        delete cart[item];
+    }
+    localStorage.clear();
+    UpdatePopOver(cart);
+    window.location.reload();
+}
+
+function BuyNow() {
+    var idStr = document.getElementById('buypr{{product.0.id}}').id.toString().slice(3, );
+
+    if (cart[idStr] == undefined) {
+        qty = 1;
+        name = document.getElementById('name' + idStr).innerHTML;
+        price = document.getElementById('price' + idStr).innerHTML;
+        cart[idStr] = [qty, name, price];
+    }
+    UpdateCart(cart);
+    UpdatePopOver(cart);
+    window.location.href = '/shop/checkout';
+}
+</script>
+{% endblock %}

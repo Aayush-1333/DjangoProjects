@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+              integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+              crossorigin="anonymous">
+        <title>ShadeKart - HomePage</title>
+    </head>
+
+    <style>
+        {% load static %}
+        body{
+            background-image: url({% static 'ShadzStore/bgImage.jpg'%});
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+
+    <body>
+            <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+                  <div class="container-fluid">
+                        <a class="navbar-brand">
+                            <b><i style="font-family: cursive; color: white;">ShadeKart</i></b>
+                        </a>
+
+                        <button class="navbar-toggler" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                              <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                      <a class="nav-link" aria-current="page" href="/"> <b>Home</b></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="shop/"><b>ShadzStore</b></a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                      <a class="nav-link" href="blogs/"><b>ShadzBlogs</b></a>
+                                    </li>
+                              </ul>
+                        </div>
+                  </div>
+            </nav>
+
+            <div class="row">
+                <div class="row mx-4">
+                    <div class="col-4 mx-4 my-4" style="background-color: lightblue; border-style: solid;">
+                        <h2 align="center"> End Of Season Sale!! </h2>
+                        <h6> Get up to <b> 40-50% </b> off on all Men's Fashion
+                            including jackets, jeans and hoodies as well. </h6>
+                        <br>
+
+                        <h6> Up to <b> 30-50% </b> off on all Women's Fashion
+                            including tops, jeans and party wear as well. </h6>
+                        <br>
+
+                        <h6> We have all types of accessories
+                             ranging from <b> fashion to party accessories and gaming accessories to laptops </b>
+                            as well.</h6>
+
+                        <h6> We provide all sorts of products to our valuable customers
+                             and we always make ensure that they always enjoy our services without any interruptions!</h6>
+                        <br>
+                        <br>
+                        <h6>Regards,</h6>
+                        <h6>The Shade Team, since 2017</h6>
+                    </div>
+                </div>
+
+                <div class="col-2 align-self-center mx-6" style="background-color: lightyellow; border-style: solid;">
+                    <h3>About the Site</h3>
+                    <br>
+                    <h6>We offer a huge variety of products from electronics to fashion</h6>
+                    <h6>Gaming accessories to fashion accessories all at one place!</h6>
+                    <br>
+                    <h6>Originated from the lands of Europe, we provide quality to our valuable customers</h6>
+                </div>
+            </div>
+
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                    crossorigin="anonymous"></script>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                    crossorigin="anonymous"></script>
+    </body>
+</html>

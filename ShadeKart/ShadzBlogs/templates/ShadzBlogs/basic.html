@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v16.0" nonce="0e8W0tMR">
+</script>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+        {% load static %}
+        #navbarSupportedContent{
+            background-image: url({% static 'ShadzBlogs/navbarImg.jpg' %});
+        }
+
+        body{
+            background-image: url({% static 'ShadzBlogs/wowpattern.jpg' %})
+
+        }
+
+        {% block css %} {% endblock %}
+    </style>
+</head>
+<!-- ============== Navigation Bar ============= -->
+
+<body>
+    {% load static %}
+    <nav id="top-bar" class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+        <img src="{% static 'ShadzBlogs/ShadzBlogsLogo.jpeg' %}" width="25" height="25">
+        <a class="navbar-brand mx-2" href="/blogs"><b><i style="font-family: cursive; color: lightblue;">ShadzBlogs</i></b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-2 mr-auto my-2 rounded-pill" style="background-color: rebeccapurple;">
+                <li class="nav-item mr-1">
+                    <a class="nav-link active" href="/"><b>Home</b> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item mr-1">
+                    <a class="nav-link active" href="/shop"><b>ShadzStore</b> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item mr-1">
+                    <a class="nav-link active" href="blogPosts"><b>Posts</b></a>
+                </li>
+                <li class="nav-item mr-1">
+                    <a class="nav-link active" href="/shop/about"><b>About Us</b></a>
+                </li>
+                <li class="nav-item mr-1 dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <b>Services</b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/shop/login">Login</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/blogs/submitPost">Submit your post</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/shop/contact">Help and Support</a>
+                    </div>
+                </li>
+            </ul>
+            <form method="get" action="/blogs/search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success mr-2 my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    {% block body %} {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %} {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+{% extends 'ShadzBlogs/basic.html' %}
+{% block title %} ShadzBlogs - Posts {% endblock %}
+{% block body %}
+{% load static %}
+<div class="container-fluid rounded shadow-lg" style="background-color: white; border: solid;">
+    <div class="row">
+        <div class="col-10">
+            <div class="col mt-2 border-bottom">
+                <h1 class="blog-post-title"> <i>New Outlets in San Diego region</i> </h1>
+                <h6 class="blog-post-meta"> Written by Sylvester Markov 12 Jun, 2023</h6>
+                <br>
+                <!-- Facebook likes and share buttons -->
+                <div class="fb-like" data-href="http://127.0.0.1:8000/blogs/officialPost1" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+            </div>
+            <div class="row my-4">
+                <div class="col-7 rounded" align="left">
+                    <img src="{% static 'ShadzBlogs/ShopImage.jpg' %}" class="rounded" width="620" height="420">
+                </div>
+                <div class="col-5 rounded shadow-lg" style="border: solid;">
+                    <h1 class="border-bottom shadow-sm"><i>Table of Contents</i></h1>
+                    <br>
+                    <ul style="color: orangered;">
+                        <h2>
+                            <li>Regions covered in San Diego</li>
+                        </h2>
+                        <br>
+                        <h2>
+                            <li>New services and other facilities</li>
+                        </h2>
+                        <br>
+                        <h2>
+                            <li>Future Plans</li>
+                        </h2>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-success border-bottom shadow-sm"> Regions covered in San Diego </h3>
+                    <p class="mt-4">We are covering a lot</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-primary border-bottom shadow-sm"> New services and other facilities </h3>
+                    <p class="mt-4">new services</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="border-bottom shadow-sm" style="color: mediumpurple;">Future Plans</h3>
+                    <p class="mt-4">future plans are there next year!</p>
+                    <!-- Facebook comments section -->
+                    <h3>Comments</h3>
+                    <div class="fb-comments" data-href="http://127.0.0.1:8000/blogs/officialPost1" data-width="" data-numposts="5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

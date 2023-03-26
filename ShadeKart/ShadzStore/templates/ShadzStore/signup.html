@@ -1,0 +1,41 @@
+{% extends 'ShadzStore/basic.html' %}
+{% block title %}ShadzStore - Sign Up{% endblock %}
+{% block body %}
+<div class="container">
+    <h3 class="mt-4">Create ShadeKart Account</h3>
+    <form method="post" id='signupForm' class="mt-4">
+        {% csrf_token %}
+        <label class="form-label my-2" for="username"><strong>Username</strong></label>
+        <input class="form-control my-2" type="text" name="username" id="username" placeholder="Your Username">
+        <label class="form-label my-2" for="passwd"><strong>Password</strong></label>
+        <input class="form-control my-2" type="password" name="passwd" id="passwd" placeholder="Password (8-10 characters)">
+        <label class="form-label my-2" for="email"><strong>Email Address</strong></label>
+        <input class="form-control my-2" type="email" name="email" id="email" placeholder="username@email.com">
+        <label class="form-label my-2" for="phone"><strong>Phone number</strong></label>
+        <input class="form-control my-2" type="tel" name="phone" id="phone" placeholder="Mobile number">
+        <button class="btn btn-primary mt-4 mx-2" type="button" onclick='SubmitAccount()'>Create Account</button>
+        <a href="/shop"><button class="btn btn-primary mt-4 mx-2" type="button">Go back</button></a>
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+function SubmitAccount() {
+    var username = $("input[name='username']").val();
+    var email = $("input[name='email']").val();
+    var phone = $("input[name='phone']").val();
+    var passwd = $("input[name='passwd']").val();
+
+    if (username != '' && email != '' && phone != '') {
+        if (passwd.length >= 8 && passwd.length <= 10) {
+            document.getElementById('signupForm').submit();
+            alert('Account created successfully!!');
+        } else {
+            alert('Please create a valid password!');
+        }
+    } else {
+        alert('Please fill the details!');
+    }
+}
+</script>
+{% endblock %}

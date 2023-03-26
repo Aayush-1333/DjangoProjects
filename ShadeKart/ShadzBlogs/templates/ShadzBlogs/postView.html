@@ -1,0 +1,76 @@
+{% extends 'ShadzBlogs/basic.html' %}
+{% block title %} ShadzBlogs - Posts {% endblock %}
+{% block body %}
+<div class="container-fluid rounded shadow-lg" style="background-color: white; border: solid;">
+    <div class="row">
+        <div class="col-10">
+            <div class="col mt-2 border-bottom">
+                <h1 class="blog-post-title"> <i> {{post.title}} </i> </h1>
+                <h6 class="blog-post-meta"> Written by {{post.writer}} {{post.published_date}}</h6>
+                <br>
+                <!-- Facebook likes and share buttons -->
+                <div class="fb-like" data-href="http://127.0.0.1:8000/blogs/postView{{post.post_id}}" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+            </div>
+            <div class="row my-4">
+                <div class="col-7 rounded" align="left">
+                    <img src="/media/{{post.thumbnail}}" class="rounded" width="620" height="420">
+                </div>
+                <div class="col-5 rounded shadow-lg" style="border: solid;">
+                    <h1 class="border-bottom shadow-sm"><i>Table of Contents</i></h1>
+                    <br>
+                    <ul style="color: orangered;">
+                        <h2>
+                            <li>{{post.head0}}</li>
+                        </h2>
+                        <br>
+                        <h2>
+                            <li>{{post.head1}}</li>
+                        </h2>
+                        <br>
+                        <h2>
+                            <li>{{post.head2}}</li>
+                        </h2>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-success border-bottom shadow-sm"> {{post.head0}} </h3>
+                    <p class="mt-4">{{post.content_head0}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-primary border-bottom shadow-sm"> {{post.head1}} </h3>
+                    <p class="mt-4">{{post.content_head1}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="border-bottom shadow-sm" style="color: mediumpurple;">{{post.head2}}</h3>
+                    <p class="mt-4">{{post.content_head2}}</p>
+                    <!-- Facebook comments section -->
+                    <h3>Comments</h3>
+                    <div class="fb-comments" data-href="http://127.0.0.1:8000/blogs/postView{{post.post_id}}" data-width="" data-numposts="5"></div>
+                </div>
+            </div>
+            <div class="row mx-4 my-4">
+                <div class="col-6">
+                    {% if prev_len != 0 and prev_post.0.post_id > 0 %}
+                    <a href="/blogs/postView{{prev_post.0.post_id}}"><button class="btn btn-success mx-4" type="button">Prev Post</button></a>
+                    {% else %}
+                    <button type="button" class="btn btn-success mx-4" disabled>Prev Post</button>
+                    {% endif %}
+                </div>
+                <div class="col" align="right">
+                    {% if next_len != 0 and next_post.0.post_id > 0 %}
+                    <a href="/blogs/postView{{next_post.0.post_id}}"><button class="btn btn-success mx-4" type="button">Next Post</button></a>
+                    {% else %}
+                    <button type="button" class="btn btn-success mx-4" disabled>Next Post</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

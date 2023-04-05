@@ -27,9 +27,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, r'ShadzStore\static'),
 SECRET_KEY = 'django-insecure-6_4*i$+_8@8^k*ybh$dl(fwje(3cwben46cst&+cd7m(inzmg^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
